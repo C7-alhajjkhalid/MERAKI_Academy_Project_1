@@ -59,7 +59,8 @@ for (i = 0; i < shuffledDB1.length; i++) {
   div.append(img);
   place.append(div);
   div.addEventListener("click", (e) => {
-    console.log(e.target);
+    img.style.display = "inline";
+    console.log(img.id);
   });
 }
 
@@ -79,7 +80,8 @@ for (i = 0; i < shuffledDB2.length; i++) {
   div.append(img);
   place.append(div);
   div.addEventListener("click", (e) => {
-    console.log(e.target);
+    img.style.display = "inline";
+    console.log(img.id);
   });
 }
 
