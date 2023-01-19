@@ -16,7 +16,7 @@ const dataBase = [
   },
   {
     id: 4,
-    src: "https://www.google.com/url?sa=i&url=https%3A%2F%2Felectronicmusic.fandom.com%2Fwiki%2FWright%2C_Richard&psig=AOvVaw3dpzlqp0KzwkvAw3CWtSXW&ust=1674210603243000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCNiPzLy20_wCFQAAAAAdAAAAABAJ",
+    src: "https://static.wikia.nocookie.net/electronicmusic/images/0/0d/Richard_Wright.jpeg",
   },
   {
     id: 5,
@@ -27,17 +27,70 @@ const dataBase = [
     src: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
   },
 ];
-for (i = 0; i < 12; i++) {
+
+// This function purpose is to loop over the array and shuffle the items using the Fisher-Yates Algorithm... it replaces each item in the array with another item that holds a random index number using the math.random
+const shuffle = (array) => {
+  for (i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = array[i];
+
+    array[i] = array[j];
+    array[j] = temp;
+  }
+  return array;
+};
+
+const shuffledDB1 = shuffle(dataBase);
+const shuffledDB2 = shuffle(dataBase);
+
+for (i = 0; i < shuffledDB1.length; i++) {
   const div = document.createElement("div");
   const img = document.createElement("img");
   const place = document.querySelector("#playArea");
-  img.src =
-    "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png";
+  img.src = shuffledDB1[i].src;
+  img.id = shuffledDB1[1].id;
+
   img.style.height = "150px";
   img.style.width = "120px";
-  place.append(img);
+  div.style.height = "150px";
+  div.style.width = "120px";
+  div.style.border = "2px solid red";
+  img.style.display = "none";
+  div.append(img);
+  place.append(div);
+  div.addEventListener("click", (e) => {
+    console.log(e.target);
+  });
 }
 
+for (i = 0; i < shuffledDB2.length; i++) {
+  const div = document.createElement("div");
+  const img = document.createElement("img");
+  const place = document.querySelector("#playArea");
+  img.src = shuffledDB2[i].src;
+  img.id = shuffledDB2[i].id;
 
-const array1 = [1, 2, 3, 4, 5, 6];
+  div.style.height = "150px";
+  div.style.width = "120px";
+  img.style.height = "150px";
+  img.style.width = "120px";
+  img.style.display = "none";
+  div.style.border = "2px solid red";
+  div.append(img);
+  place.append(div);
+  div.addEventListener("click", (e) => {
+    console.log(e.target);
+  });
+}
 
+// for (i = 0; i < 12; i++) {
+//   const div = document.createElement("div");
+//   const place = document.querySelector("#playArea");
+
+//   div.style.height = "150px";
+//   div.style.width = "120px";
+//   div.style.backgroundColor = "darkgray";
+//   div.style.borderRadius = "10%";
+//   div.style.position = "absolute";
+//   place.append(div);
+// }
