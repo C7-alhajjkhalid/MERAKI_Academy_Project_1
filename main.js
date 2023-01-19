@@ -4,27 +4,27 @@ const option = document.createElement("div");
 const dataBase = [
   {
     id: 1,
-    src: "https://images.jpost.com/image/upload/f_auto,fl_lossy/t_JM_ArticleMainImageFaceDetect/442543",
+    src: "https://images2.imgbox.com/a5/98/gq9g8uJC_o.jpg",
   },
   {
     id: 2,
-    src: "https://www.themoviedb.org/t/p/w500/n1KOcuMSdNHY0pewz6fEWl6zHYD.jpg",
+    src: "https://images2.imgbox.com/22/4d/44q0aFBi_o.jpg",
   },
   {
     id: 3,
-    src: "https://static.wikia.nocookie.net/pinkfloyd/images/f/ff/Syd.jpg/revision/latest/scale-to-width-down/220?cb=20161023183805",
+    src: "https://images2.imgbox.com/4f/23/RYOpxvBY_o.jpg",
   },
   {
     id: 4,
-    src: "https://static.wikia.nocookie.net/electronicmusic/images/0/0d/Richard_Wright.jpeg",
+    src: "https://images2.imgbox.com/7f/79/G9LiQYCC_o.jpg",
   },
   {
     id: 5,
-    src: "https://static.wikia.nocookie.net/pinkfloyd/images/3/33/Nick_Mason.jpg/revision/latest?cb=20161023180844",
+    src: "https://images2.imgbox.com/04/57/KT0v3P9y_o.jpg",
   },
   {
     id: 6,
-    src: "https://upload.wikimedia.org/wikipedia/en/3/3b/Dark_Side_of_the_Moon.png",
+    src: "https://images2.imgbox.com/bf/d8/FjtbQ8ZN_o.jpg",
   },
 ];
 
@@ -40,11 +40,10 @@ const shuffle = (array) => {
   return array;
 };
 
-const shuffledDB1 = shuffle(dataBase);
-const shuffledDB2 = shuffle(dataBase);
+//shuffledDBFinal is an array that contains the database repeated twice and shuffled using the shuffle function that we created earlier
+const shuffledDBFinal = shuffle([...dataBase, ...dataBase]);
 
-const shuffledDBFinal = [...shuffledDB1, ...shuffledDB2];
-
+//Now we need to loop over the final shuffled array and display them in the #playArea grid that we created in html
 for (i = 0; i < shuffledDBFinal.length; i++) {
   const div = document.createElement("div");
   const img = document.createElement("img");
@@ -57,14 +56,25 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   div.style.height = "150px";
   div.style.width = "120px";
   div.style.border = "2px solid red";
+  div.style.borderRadius = "10%";
+
+  div.style.backgroundColor = "darkgray";
+
   img.style.display = "none";
+  img.style.borderRadius = "10%";
   div.append(img);
   place.append(div);
   div.addEventListener("click", (e) => {
     img.style.display = "inline";
     console.log(img.id);
+    console.log(e.target);
   });
 }
+
+const btn = document.querySelector("#restartBtn");
+btn.addEventListener("click", (e) => {
+  location.reload();
+});
 
 // for (i = 0; i < 12; i++) {
 //   const div = document.createElement("div");
