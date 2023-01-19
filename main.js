@@ -43,12 +43,14 @@ const shuffle = (array) => {
 const shuffledDB1 = shuffle(dataBase);
 const shuffledDB2 = shuffle(dataBase);
 
-for (i = 0; i < shuffledDB1.length; i++) {
+const shuffledDBFinal = [...shuffledDB1, ...shuffledDB2];
+
+for (i = 0; i < shuffledDBFinal.length; i++) {
   const div = document.createElement("div");
   const img = document.createElement("img");
   const place = document.querySelector("#playArea");
-  img.src = shuffledDB1[i].src;
-  img.id = shuffledDB1[1].id;
+  img.src = shuffledDBFinal[i].src;
+  img.id = shuffledDBFinal[i].id;
 
   img.style.height = "150px";
   img.style.width = "120px";
@@ -56,27 +58,6 @@ for (i = 0; i < shuffledDB1.length; i++) {
   div.style.width = "120px";
   div.style.border = "2px solid red";
   img.style.display = "none";
-  div.append(img);
-  place.append(div);
-  div.addEventListener("click", (e) => {
-    img.style.display = "inline";
-    console.log(img.id);
-  });
-}
-
-for (i = 0; i < shuffledDB2.length; i++) {
-  const div = document.createElement("div");
-  const img = document.createElement("img");
-  const place = document.querySelector("#playArea");
-  img.src = shuffledDB2[i].src;
-  img.id = shuffledDB2[i].id;
-
-  div.style.height = "150px";
-  div.style.width = "120px";
-  img.style.height = "150px";
-  img.style.width = "120px";
-  img.style.display = "none";
-  div.style.border = "2px solid red";
   div.append(img);
   place.append(div);
   div.addEventListener("click", (e) => {
