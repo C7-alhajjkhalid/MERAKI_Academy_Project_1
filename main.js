@@ -55,10 +55,11 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   img.style.width = "120px";
   div.style.height = "150px";
   div.style.width = "120px";
-  div.style.border = "2px solid red";
+  div.style.border = "2px solid #F4A261";
   div.style.borderRadius = "10%";
 
-  div.style.backgroundColor = "darkgray";
+  div.style.backgroundColor = "#E76F51";
+  div.id = `child${i + 1}`;
 
   img.style.display = "none";
   img.style.borderRadius = "10%";
@@ -67,7 +68,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   div.addEventListener("click", (e) => {
     img.style.display = "inline";
     console.log(img.id);
-    console.log(e.target);
+    console.log(div.id);
   });
 }
 
@@ -75,6 +76,8 @@ const btn = document.querySelector("#restartBtn");
 btn.addEventListener("click", (e) => {
   location.reload();
 });
+
+const test = document.querySelector("#child1");
 
 // for (i = 0; i < 12; i++) {
 //   const div = document.createElement("div");
