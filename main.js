@@ -1,6 +1,14 @@
 const body = document.querySelector("body");
 const option = document.createElement("div");
 
+const hideCard = (x) => {
+  x.style.display = "none";
+};
+
+const showCard = (x) => {
+  x.style.display = "inline";
+};
+
 const dataBase = [
   {
     id: 1,
@@ -44,6 +52,8 @@ const shuffle = (array) => {
 const shuffledDBFinal = shuffle([...dataBase, ...dataBase]);
 
 //Now we need to loop over the final shuffled array and display them in the #playArea grid that we created in html
+let firstC = 0;
+let firstOption = 0;
 for (i = 0; i < shuffledDBFinal.length; i++) {
   const div = document.createElement("div");
   const img = document.createElement("img");
@@ -60,24 +70,58 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
 
   div.style.backgroundColor = "#E76F51";
   div.id = `child${i + 1}`;
+  div.classList.add("divCard");
+  img.classList.add("imgCard");
 
   img.style.display = "none";
   img.style.borderRadius = "10%";
   div.append(img);
   place.append(div);
   div.addEventListener("click", (e) => {
-    img.style.display = "inline";
+    showCard(img);
+
     console.log(img.id);
     console.log(div.id);
+
+    if (firstC === 0) {
+      firstC = img.id;
+      firstDiv = div.id;
+    } else {
+      if (firstC === img.id) {
+        console.log("Match!");
+      } else {
+        console.log("No match.");
+        const temp = document
+          .querySelector("#" + firstDiv)
+          .querySelector("img");
+
+        setTimeout(() => {
+          hideCard(temp);
+          hideCard(img);
+        }, 2000);
+      }
+      firstC = 0;
+    }
   });
 }
+
+const sqr1 = document.querySelector("#child1");
+const sqr2 = document.querySelector("#child2");
+const sqr3 = document.querySelector("#child3");
+const sqr4 = document.querySelector("#child4");
+const sqr5 = document.querySelector("#child5");
+const sqr6 = document.querySelector("#child6");
+const sqr7 = document.querySelector("#child7");
+const sqr8 = document.querySelector("#child8");
+const sqr9 = document.querySelector("#child9");
+const sqr10 = document.querySelector("#child10");
+const sqr11 = document.querySelector("#child11");
+const sqr12 = document.querySelector("#child12");
 
 const btn = document.querySelector("#restartBtn");
 btn.addEventListener("click", (e) => {
   location.reload();
 });
-
-const test = document.querySelector("#child1");
 
 // for (i = 0; i < 12; i++) {
 //   const div = document.createElement("div");
