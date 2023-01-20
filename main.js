@@ -7,7 +7,7 @@ winningCounter.style.color = "green";
 failedCounter.style.fontSize = "50px";
 winningCounter.style.fontSize = "50px";
 let wrongSound = new Audio("wrong.wav");
-let correctSound = new Audio("correct.mp3");
+let correctSound = new Audio("correct.wav");
 let BGMusic = new Audio("HighHopes.mp3");
 const winChild = document.querySelector("#winChild")
 const loseChild = document.querySelector("#loseChild")
@@ -169,14 +169,3 @@ musicBtn.addEventListener("click", (e) => {
 
 
 
-// for (i = 0; i < 12; i++) {
-//   const div = document.createElement("div");
-//   const place = document.querySelector("#playArea");
-
-//   div.style.height = "150px";
-//   div.style.width = "120px";
-//   div.style.backgroundColor = "darkgray";
-//   div.style.borderRadius = "10%";
-//   div.style.position = "absolute";
-//   place.append(div);
-// }
