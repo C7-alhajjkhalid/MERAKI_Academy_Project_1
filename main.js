@@ -1,5 +1,11 @@
 const body = document.querySelector("body");
 const option = document.createElement("div");
+const failedCounter = document.createElement("h1");
+const winningCounter = document.createElement("h1");
+failedCounter.style.color = "red";
+winningCounter.style.color = "green";
+let wrongSound = new Audio("wrong.wav");
+let correctSound = new Audio("correct.mp3");
 
 const hideCard = (x) => {
   x.style.display = "none";
@@ -51,11 +57,16 @@ const shuffle = (array) => {
 //shuffledDBFinal is an array that contains the database repeated twice and shuffled using the shuffle function that we created earlier
 const shuffledDBFinal = shuffle([...dataBase, ...dataBase]);
 
-//Now we need to loop over the final shuffled array and display them in the #playArea grid that we created in html
+//Using closures, firstC allows us to access the value of the first clicked div using if statement
 let firstC = 0;
-let firstOption = 0;
+//Using closures, counter allows us to count how many times the user attempted to reveal cards
+let fCounter = 0;
+let wCounter = 0;
+//Now we need to loop over the final shuffled array and display them in the #playArea grid that we created in html
+
 for (i = 0; i < shuffledDBFinal.length; i++) {
   const div = document.createElement("div");
+
   const img = document.createElement("img");
   const place = document.querySelector("#playArea");
   img.src = shuffledDBFinal[i].src;
@@ -77,9 +88,10 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   img.style.borderRadius = "10%";
   div.append(img);
   place.append(div);
+  body.append(failedCounter);
+  body.append(winningCounter);
   div.addEventListener("click", (e) => {
     showCard(img);
-
     console.log(img.id);
     console.log(div.id);
 
@@ -88,9 +100,16 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
       firstDiv = div.id;
     } else {
       if (firstC === img.id) {
+        correctSound.play();
         console.log("Match!");
+        wCounter++;
+        winningCounter.innerText = wCounter;
       } else {
+        wrongSound.play();
         console.log("No match.");
+        fCounter++;
+        failedCounter.innerText = fCounter;
+
         const temp = document
           .querySelector("#" + firstDiv)
           .querySelector("img");
@@ -98,7 +117,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
         setTimeout(() => {
           hideCard(temp);
           hideCard(img);
-        }, 2000);
+        }, 1000);
       }
       firstC = 0;
     }

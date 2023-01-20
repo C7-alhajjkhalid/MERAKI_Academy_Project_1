@@ -1,3 +1,9 @@
+body {
+  background-image: url("https://i.redd.it/h26gu0laltn31.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 main {
   display: grid;
   grid-template-columns: 1fr;
@@ -5,7 +11,6 @@ main {
   justify-items: center;
   /* border: solid #e9c46a 2px; */
   gap: 10px;
-  background-color: #264653;
 }
 
 #wlcmSection {
