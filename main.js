@@ -90,6 +90,8 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   img.style.borderRadius = "10%";
   div.append(img);
   place.append(div);
+  loseChild.style.textAlign = "center"
+  winChild.style.textAlign = "center"
   loseChild.append(failedCounter);
   winChild.append(winningCounter);
   div.addEventListener("click", (e) => {
