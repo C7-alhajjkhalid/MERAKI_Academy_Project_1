@@ -4,6 +4,8 @@ const failedCounter = document.createElement("h1");
 const winningCounter = document.createElement("h1");
 failedCounter.style.color = "red";
 winningCounter.style.color = "green";
+failedCounter.style.fontSize = "50px";
+winningCounter.style.fontSize = "50px";
 let wrongSound = new Audio("wrong.wav");
 let correctSound = new Audio("correct.mp3");
 let BGMusic = new Audio("HighHopes.mp3");
@@ -96,38 +98,47 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   winChild.append(winningCounter);
   div.addEventListener("click", (e) => {
     showCard(img);
-    console.log(img.id);
-    console.log(div.id);
-
     if (firstC === 0) {
       firstC = img.id;
       firstDiv = div.id;
     } else {
+      // This case is when 2 cards result is a match
       if (firstC === img.id) {
+        // Correct sound will be played
         correctSound.play();
-        console.log("Match!");
+        // The win counter will increase by 1 increment 
         wCounter++;
+        //The counter value will be reflected on the page
         winningCounter.innerText = wCounter;
+        // This case is when the cards don't match each other
+        if (wCounter === 6) {
+          alert("You won!!");
+        }
       } else {
+        // Wrong soundtrack will be played
         wrongSound.play();
+        // Below CSS property will prohibit any clicks on the #playArea so users can't cheat
         place.style.pointerEvents = "none";
-        console.log("No match.");
+        // The lose counter will increase by 1 increment
         fCounter++;
+         //The counter value will be reflected on the page
         failedCounter.innerText = fCounter;
-
+        // Below temp will hold the value of the first card in order to hide it later 
         const temp = document
           .querySelector("#" + firstDiv)
           .querySelector("img");
-
+        //The timer will use the hide card function in order to hide the first and second card and return the state of pointerEvents to auto so the user can try again
         setTimeout(() => {
           hideCard(temp);
           hideCard(img);
           place.style.pointerEvents = "auto";
-        }, 1000);
+        }, 2000);
       }
+      // The value of first card will change back to 0 when the cards match or don't match
       firstC = 0;
     }
   });
+ 
 }
 
 const sqr1 = document.querySelector("#child1");
