@@ -48,3 +48,18 @@ h1 {
   color: #264653;
   font-size: 40px;
 }
+
+#counterSection {
+  
+  width: 600px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counterChild {
+ 
+  height: 70px;
+  width: 250px;
+}

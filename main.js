@@ -6,7 +6,9 @@ failedCounter.style.color = "red";
 winningCounter.style.color = "green";
 let wrongSound = new Audio("wrong.wav");
 let correctSound = new Audio("correct.mp3");
-
+let BGMusic = new Audio("HighHopes.mp3");
+const winChild = document.querySelector("#winChild")
+const loseChild = document.querySelector("#loseChild")
 const hideCard = (x) => {
   x.style.display = "none";
 };
@@ -88,8 +90,8 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   img.style.borderRadius = "10%";
   div.append(img);
   place.append(div);
-  body.append(failedCounter);
-  body.append(winningCounter);
+  loseChild.append(failedCounter);
+  winChild.append(winningCounter);
   div.addEventListener("click", (e) => {
     showCard(img);
     console.log(img.id);
@@ -106,6 +108,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
         winningCounter.innerText = wCounter;
       } else {
         wrongSound.play();
+        place.style.pointerEvents = "none";
         console.log("No match.");
         fCounter++;
         failedCounter.innerText = fCounter;
@@ -117,6 +120,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
         setTimeout(() => {
           hideCard(temp);
           hideCard(img);
+          place.style.pointerEvents = "auto";
         }, 1000);
       }
       firstC = 0;
@@ -141,6 +145,16 @@ const btn = document.querySelector("#restartBtn");
 btn.addEventListener("click", (e) => {
   location.reload();
 });
+
+const musicBtn = document.querySelector("#musicBtn")
+
+
+musicBtn.addEventListener("click", (e) => {
+  BGMusic.play()
+});
+
+
+
 
 // for (i = 0; i < 12; i++) {
 //   const div = document.createElement("div");
