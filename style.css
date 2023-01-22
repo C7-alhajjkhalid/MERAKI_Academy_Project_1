@@ -32,8 +32,9 @@ main {
 
 h1 {
   color: #f4a261;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Roboto", sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5%;
 }
 
 #restartBtn {
@@ -48,7 +49,7 @@ h1 {
 
 #counterSection {
   width: 600px;
-  height: 80px;
+  height: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,4 +63,8 @@ h1 {
 .rotate-scale-up-diag-1 {
   -webkit-animation: rotate-scale-up-diag-1 0.7s linear both;
   animation: rotate-scale-up-diag-1 0.7s linear both;
+}
+
+.welcomeDiv {
+  border: red solid 3px;
 }

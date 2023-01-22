@@ -12,6 +12,7 @@ let BGMusic = new Audio("HighHopes.mp3");
 const winChild = document.querySelector("#winChild");
 const loseChild = document.querySelector("#loseChild");
 const place = document.querySelector("#playArea");
+let imagesIds = [];
 
 // This function takes an html tag and hides it
 const hideCard = (x) => {
@@ -69,7 +70,8 @@ const shuffledDBFinal = shuffle([...dataBase, ...dataBase]);
 //Below is the introduction section that contains a small brief about the game and how to play
 
 const fixedDiv = document.createElement("div");
-fixedDiv.style.border = "solid #264653 3px";
+fixedDiv.classList.add("wlecomeDiv");
+fixedDiv.style.border = "solid #264653 10px";
 fixedDiv.style.borderRadius = "5%";
 fixedDiv.style.width = "600px";
 fixedDiv.style.height = "650px";
@@ -86,7 +88,7 @@ const wlcmP = document.createElement("p");
 wlcmP.innerText =
   "Introducing a fun and unique card game that combines HTML, JavaScript, and CSS - the Pink Floyd Album Cover Matching Game! In this game, you'll be challenged to match pink floyd album covers hidden behind cards. The game is easy to play, but with a fun twist that makes it challenging and exciting. To play, simply click on two cards at a time to reveal the album covers. If the covers match, they will remain face up and you'll earn points. If the covers don't match, they will be flipped back over and you'll need to try again. The objective is to match all the cards as quickly as possible, with the least amount of clicks to earn the most points. The game is over when all cards are matched. Good luck and have fun!";
 wlcmP.style.color = "#264653";
-wlcmP.style.fontFamily = "Monospace";
+wlcmP.style.fontFamily = "font-family: 'Roboto', sans-serif;";
 wlcmP.style.fontSize = "25px";
 wlcmP.style.width = "540px";
 wlcmP.style.textAlign = "center";
@@ -98,6 +100,7 @@ wlcmSkipBtn.style.width = "300px";
 wlcmSkipBtn.style.alignSelf = "center";
 wlcmSkipBtn.style.fontSize = "25px";
 wlcmSkipBtn.style.color = "#264653";
+wlcmSkipBtn.style.fontFamily = "font-family: 'Roboto', sans-serif;";
 
 body.append(fixedDiv);
 fixedDiv.append(wlcmP);
@@ -129,8 +132,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   div.style.border = "2px solid #F4A261";
   div.style.borderRadius = "5%";
 
-  div.style.backgroundImage =
-    "url(https://lh5.googleusercontent.com/b1UiiS8bt6V-w1dFgMAKl2e3q3iik68nJXT-qicmbDxGLnC_1ZmegvdWwUqa_sotYSo=w2400)";
+  div.style.backgroundImage = "url(https://i.imgur.com/PSPlwuw.png)";
   div.style.backgroundColor = "#E76F51";
   div.style.backgroundSize = "cover";
   div.style.backgroundRepeat = "no-repeat";
@@ -149,13 +151,15 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   div.addEventListener("click", (e) => {
     //This is the first card that the user opens
     showCard(img);
+
     if (firstC === 0) {
       firstC = img.id;
       firstDiv = div.id;
-      div.style.pointerEvents = "none";
+      e.target.style.pointerEvents = "none";
+
       setTimeout(() => {
-        div.style.pointerEvents = "auto";
-      }, 3000);
+        e.target.style.pointerEvents = "auto";
+      }, 2000);
     } else {
       // This case is when 2 cards result is a match
       if (firstC === img.id) {
@@ -182,9 +186,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
           resultPage.style.justifyContent = "center";
           body.append(resultPage);
           const resultText = document.createElement("h1");
-          resultText.innerText = `You Won!! Your score is ${
-            wCounter / fCounter
-          } out of 6`;
+          resultText.innerText = `You Won!! It took you ${fCounter} attempts to figure it out`;
           resultText.style.fontSize = "40px";
           resultText.style.textAlign = "center";
           resultText.style.textAlign = "center";
@@ -197,6 +199,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
         wrongSound.play();
         // Below CSS property will prohibit any clicks on the #playArea so users can't cheat
         place.style.pointerEvents = "none";
+        e.target.style.pointerEvents = "none";
         // The lose counter will increase by 1 increment
         fCounter++;
         //The counter value will be reflected on the page
@@ -210,6 +213,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
           hideCard(temp);
           hideCard(img);
           place.style.pointerEvents = "auto";
+          e.target.style.pointerEvents = "auto";
         }, 2000);
       }
       // The value of first card will change back to 0 when the cards match or don't match
@@ -217,19 +221,6 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
     }
   });
 }
-
-// const sqr1 = document.querySelector("#child1");
-// const sqr2 = document.querySelector("#child2");
-// const sqr3 = document.querySelector("#child3");
-// const sqr4 = document.querySelector("#child4");
-// const sqr5 = document.querySelector("#child5");
-// const sqr6 = document.querySelector("#child6");
-// const sqr7 = document.querySelector("#child7");
-// const sqr8 = document.querySelector("#child8");
-// const sqr9 = document.querySelector("#child9");
-// const sqr10 = document.querySelector("#child10");
-// const sqr11 = document.querySelector("#child11");
-// const sqr12 = document.querySelector("#child12");
 
 const btn = document.querySelector("#restartBtn");
 btn.addEventListener("click", (e) => {
