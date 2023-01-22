@@ -74,11 +74,12 @@ const fixedDiv = document.createElement("div");
 const wlcmP = document.createElement("p");
 const wlcmSkipBtn = document.createElement("button");
 
-fixedDiv.style.border = "solid red 3px";
+fixedDiv.style.border = "solid #264653 3px";
+fixedDiv.style.borderRadius = "10%";
 fixedDiv.style.width = "600px";
 fixedDiv.style.height = "650px";
 fixedDiv.style.position = "fixed";
-fixedDiv.style.backgroundColor = "black";
+fixedDiv.style.backgroundColor = "#f4a261";
 fixedDiv.style.top = "50%";
 fixedDiv.style.left = "50%";
 fixedDiv.style.transform = "translate(-50%, -50%)";
@@ -87,16 +88,29 @@ fixedDiv.style.flexDirection = "column";
 fixedDiv.style.justifyContent = "center";
 body.append(fixedDiv);
 
-wlcmSkipBtn.innerText = "Play Game!";
 wlcmP.innerText =
   "Introducing a fun and unique card game that combines HTML, JavaScript, and CSS - the Pink Floyd Album Cover Matching Game! In this game, you'll be challenged to match pink floyd album covers hidden behind cards. The game is easy to play, but with a fun twist that makes it challenging and exciting. To play, simply click on two cards at a time to reveal the album covers. If the covers match, they will remain face up and you'll earn points. If the covers don't match, they will be flipped back over and you'll need to try again. The objective is to match all the cards as quickly as possible, with the least amount of clicks to earn the most points. The game is over when all cards are matched. Good luck and have fun!";
-wlcmP.style.color = "white";
+wlcmP.style.color = "#264653";
+wlcmP.style.fontFamily = "Monospace";
+wlcmP.style.fontSize = "25px";
+wlcmP.style.width = "540px";
+wlcmP.style.textAlign = "center";
+wlcmP.style.alignSelf = "center";
+
+wlcmSkipBtn.innerText = "Play Game!";
+wlcmSkipBtn.style.width = "300px";
+wlcmSkipBtn.style.alignSelf = "center";
+wlcmSkipBtn.style.fontSize = "25px";
+wlcmSkipBtn.style.color = "#264653";
+
 fixedDiv.append(wlcmP);
 fixedDiv.append(wlcmSkipBtn);
 
 wlcmSkipBtn.addEventListener("click", (e) => {
   fixedDiv.remove();
 });
+
+
 
 for (i = 0; i < shuffledDBFinal.length; i++) {
   const div = document.createElement("div");
@@ -146,7 +160,30 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
         winningCounter.innerText = `Correct attempts: ${wCounter}`;
         // This case is when the cards don't match each other
         if (wCounter === 6) {
-          alert("You won!!");
+          const resultPage = document.createElement("div");
+          resultPage.style.borderRadius = "10%";
+          resultPage.style.border = "solid #264653 3px";
+          resultPage.style.width = "600px";
+          resultPage.style.height = "650px";
+          resultPage.style.position = "fixed";
+          resultPage.style.backgroundColor = "#f4a261";
+          resultPage.style.top = "50%";
+          resultPage.style.left = "50%";
+          resultPage.style.transform = "translate(-50%, -50%)";
+          resultPage.style.display = "flex";
+          resultPage.style.flexDirection = "column";
+          resultPage.style.justifyContent = "center";
+          body.append(resultPage);
+          const resultText = document.createElement("h1");
+          resultText.innerText = `You Won!! Your score is ${
+            wCounter / fCounter
+          } out of 6`;
+          resultText.style.fontSize = "40px";
+          resultText.style.textAlign = "center";
+          resultText.style.textAlign = "center";
+          resultText.style.alignSelf = "center";
+          resultText.style.color = "black";
+          resultPage.append(resultText);
         }
       } else {
         // Wrong soundtrack will be played
