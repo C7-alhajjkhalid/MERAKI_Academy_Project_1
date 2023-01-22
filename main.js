@@ -1,16 +1,17 @@
 const body = document.querySelector("body");
-const option = document.createElement("div");
 const failedCounter = document.createElement("h1");
 const winningCounter = document.createElement("h1");
 failedCounter.style.color = "red";
 winningCounter.style.color = "green";
-failedCounter.style.fontSize = "50px";
-winningCounter.style.fontSize = "50px";
+failedCounter.style.fontSize = "20px";
+winningCounter.style.fontSize = "20px";
 let wrongSound = new Audio("wrong.wav");
 let correctSound = new Audio("correct.wav");
 let BGMusic = new Audio("HighHopes.mp3");
-const winChild = document.querySelector("#winChild")
-const loseChild = document.querySelector("#loseChild")
+const winChild = document.querySelector("#winChild");
+const loseChild = document.querySelector("#loseChild");
+const place = document.querySelector("#playArea");
+
 const hideCard = (x) => {
   x.style.display = "none";
 };
@@ -66,13 +67,42 @@ let firstC = 0;
 //Using closures, counter allows us to count how many times the user attempted to reveal cards
 let fCounter = 0;
 let wCounter = 0;
+
 //Now we need to loop over the final shuffled array and display them in the #playArea grid that we created in html
+
+const fixedDiv = document.createElement("div");
+const wlcmP = document.createElement("p");
+const wlcmSkipBtn = document.createElement("button");
+
+fixedDiv.style.border = "solid red 3px";
+fixedDiv.style.width = "600px";
+fixedDiv.style.height = "650px";
+fixedDiv.style.position = "fixed";
+fixedDiv.style.backgroundColor = "black";
+fixedDiv.style.top = "50%";
+fixedDiv.style.left = "50%";
+fixedDiv.style.transform = "translate(-50%, -50%)";
+fixedDiv.style.display = "flex";
+fixedDiv.style.flexDirection = "column";
+fixedDiv.style.justifyContent = "center";
+body.append(fixedDiv);
+
+wlcmSkipBtn.innerText = "Play Game!";
+wlcmP.innerText =
+  "Introducing a fun and unique card game that combines HTML, JavaScript, and CSS - the Pink Floyd Album Cover Matching Game! In this game, you'll be challenged to match pink floyd album covers hidden behind cards. The game is easy to play, but with a fun twist that makes it challenging and exciting. To play, simply click on two cards at a time to reveal the album covers. If the covers match, they will remain face up and you'll earn points. If the covers don't match, they will be flipped back over and you'll need to try again. The objective is to match all the cards as quickly as possible, with the least amount of clicks to earn the most points. The game is over when all cards are matched. Good luck and have fun!";
+wlcmP.style.color = "white";
+fixedDiv.append(wlcmP);
+fixedDiv.append(wlcmSkipBtn);
+
+wlcmSkipBtn.addEventListener("click", (e) => {
+  fixedDiv.remove();
+});
 
 for (i = 0; i < shuffledDBFinal.length; i++) {
   const div = document.createElement("div");
 
   const img = document.createElement("img");
-  const place = document.querySelector("#playArea");
+
   img.src = shuffledDBFinal[i].src;
   img.id = shuffledDBFinal[i].id;
 
@@ -92,8 +122,8 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   img.style.borderRadius = "10%";
   div.append(img);
   place.append(div);
-  loseChild.style.textAlign = "center"
-  winChild.style.textAlign = "center"
+  loseChild.style.textAlign = "center";
+  winChild.style.textAlign = "center";
   loseChild.append(failedCounter);
   winChild.append(winningCounter);
   div.addEventListener("click", (e) => {
@@ -101,15 +131,19 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
     if (firstC === 0) {
       firstC = img.id;
       firstDiv = div.id;
+      div.style.pointerEvents = "none";
+      setTimeout(() => {
+        div.style.pointerEvents = "auto";
+      }, 2000);
     } else {
       // This case is when 2 cards result is a match
       if (firstC === img.id) {
         // Correct sound will be played
         correctSound.play();
-        // The win counter will increase by 1 increment 
+        // The win counter will increase by 1 increment
         wCounter++;
         //The counter value will be reflected on the page
-        winningCounter.innerText = wCounter;
+        winningCounter.innerText = `Correct attempts: ${wCounter}`;
         // This case is when the cards don't match each other
         if (wCounter === 6) {
           alert("You won!!");
@@ -121,9 +155,9 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
         place.style.pointerEvents = "none";
         // The lose counter will increase by 1 increment
         fCounter++;
-         //The counter value will be reflected on the page
-        failedCounter.innerText = fCounter;
-        // Below temp will hold the value of the first card in order to hide it later 
+        //The counter value will be reflected on the page
+        failedCounter.innerText = `Failed attempts: ${fCounter}`;
+        // Below temp will hold the value of the first card in order to hide it later
         const temp = document
           .querySelector("#" + firstDiv)
           .querySelector("img");
@@ -138,34 +172,28 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
       firstC = 0;
     }
   });
- 
 }
 
-const sqr1 = document.querySelector("#child1");
-const sqr2 = document.querySelector("#child2");
-const sqr3 = document.querySelector("#child3");
-const sqr4 = document.querySelector("#child4");
-const sqr5 = document.querySelector("#child5");
-const sqr6 = document.querySelector("#child6");
-const sqr7 = document.querySelector("#child7");
-const sqr8 = document.querySelector("#child8");
-const sqr9 = document.querySelector("#child9");
-const sqr10 = document.querySelector("#child10");
-const sqr11 = document.querySelector("#child11");
-const sqr12 = document.querySelector("#child12");
+// const sqr1 = document.querySelector("#child1");
+// const sqr2 = document.querySelector("#child2");
+// const sqr3 = document.querySelector("#child3");
+// const sqr4 = document.querySelector("#child4");
+// const sqr5 = document.querySelector("#child5");
+// const sqr6 = document.querySelector("#child6");
+// const sqr7 = document.querySelector("#child7");
+// const sqr8 = document.querySelector("#child8");
+// const sqr9 = document.querySelector("#child9");
+// const sqr10 = document.querySelector("#child10");
+// const sqr11 = document.querySelector("#child11");
+// const sqr12 = document.querySelector("#child12");
 
 const btn = document.querySelector("#restartBtn");
 btn.addEventListener("click", (e) => {
   location.reload();
 });
 
-const musicBtn = document.querySelector("#musicBtn")
-
+const musicBtn = document.querySelector("#musicBtn");
 
 musicBtn.addEventListener("click", (e) => {
-  BGMusic.play()
+  BGMusic.play();
 });
-
-
-
-
