@@ -19,7 +19,8 @@ main {
 }
 
 #playArea {
-  /* border: solid #e9c46a 2px; */
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 5%;
   width: 600px;
   height: 600px;
   display: grid;
@@ -61,33 +62,4 @@ h1 {
 .rotate-scale-up-diag-1 {
   -webkit-animation: rotate-scale-up-diag-1 0.7s linear both;
   animation: rotate-scale-up-diag-1 0.7s linear both;
-}
-
-@-webkit-keyframes rotate-scale-up-diag-1 {
-  0% {
-    -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
-    transform: scale(1) rotate3d(1, 1, 0, 0deg);
-  }
-  50% {
-    -webkit-transform: scale(2) rotate3d(1, 1, 0, -180deg);
-    transform: scale(2) rotate3d(1, 1, 0, -180deg);
-  }
-  100% {
-    -webkit-transform: scale(1) rotate3d(1, 1, 0, -360deg);
-    transform: scale(1) rotate3d(1, 1, 0, -360deg);
-  }
-}
-@keyframes rotate-scale-up-diag-1 {
-  0% {
-    -webkit-transform: scale(1) rotate3d(1, 1, 0, 0deg);
-    transform: scale(1) rotate3d(1, 1, 0, 0deg);
-  }
-  50% {
-    -webkit-transform: scale(2) rotate3d(1, 1, 0, -180deg);
-    transform: scale(2) rotate3d(1, 1, 0, -180deg);
-  }
-  100% {
-    -webkit-transform: scale(1) rotate3d(1, 1, 0, -360deg);
-    transform: scale(1) rotate3d(1, 1, 0, -360deg);
-  }
 }

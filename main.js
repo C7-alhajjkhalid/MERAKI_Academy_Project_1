@@ -1,3 +1,4 @@
+// We will start by defining the elements we will use in the document
 const body = document.querySelector("body");
 const failedCounter = document.createElement("h1");
 const winningCounter = document.createElement("h1");
@@ -12,14 +13,17 @@ const winChild = document.querySelector("#winChild");
 const loseChild = document.querySelector("#loseChild");
 const place = document.querySelector("#playArea");
 
+// This function takes an html tag and hides it
 const hideCard = (x) => {
   x.style.display = "none";
 };
 
+// This function reverses the previous function by showing the passed html tag
 const showCard = (x) => {
   x.style.display = "inline";
 };
 
+// The database below contains the memory card images and id numbers
 const dataBase = [
   {
     id: 1,
@@ -62,20 +66,11 @@ const shuffle = (array) => {
 //shuffledDBFinal is an array that contains the database repeated twice and shuffled using the shuffle function that we created earlier
 const shuffledDBFinal = shuffle([...dataBase, ...dataBase]);
 
-//Using closures, firstC allows us to access the value of the first clicked div using if statement
-let firstC = 0;
-//Using closures, counter allows us to count how many times the user attempted to reveal cards
-let fCounter = 0;
-let wCounter = 0;
-
-//Now we need to loop over the final shuffled array and display them in the #playArea grid that we created in html
+//Below is the introduction section that contains a small brief about the game and how to play
 
 const fixedDiv = document.createElement("div");
-const wlcmP = document.createElement("p");
-const wlcmSkipBtn = document.createElement("button");
-
 fixedDiv.style.border = "solid #264653 3px";
-fixedDiv.style.borderRadius = "10%";
+fixedDiv.style.borderRadius = "5%";
 fixedDiv.style.width = "600px";
 fixedDiv.style.height = "650px";
 fixedDiv.style.position = "fixed";
@@ -86,8 +81,8 @@ fixedDiv.style.transform = "translate(-50%, -50%)";
 fixedDiv.style.display = "flex";
 fixedDiv.style.flexDirection = "column";
 fixedDiv.style.justifyContent = "center";
-body.append(fixedDiv);
 
+const wlcmP = document.createElement("p");
 wlcmP.innerText =
   "Introducing a fun and unique card game that combines HTML, JavaScript, and CSS - the Pink Floyd Album Cover Matching Game! In this game, you'll be challenged to match pink floyd album covers hidden behind cards. The game is easy to play, but with a fun twist that makes it challenging and exciting. To play, simply click on two cards at a time to reveal the album covers. If the covers match, they will remain face up and you'll earn points. If the covers don't match, they will be flipped back over and you'll need to try again. The objective is to match all the cards as quickly as possible, with the least amount of clicks to earn the most points. The game is over when all cards are matched. Good luck and have fun!";
 wlcmP.style.color = "#264653";
@@ -97,12 +92,14 @@ wlcmP.style.width = "540px";
 wlcmP.style.textAlign = "center";
 wlcmP.style.alignSelf = "center";
 
+const wlcmSkipBtn = document.createElement("button");
 wlcmSkipBtn.innerText = "Play Game!";
 wlcmSkipBtn.style.width = "300px";
 wlcmSkipBtn.style.alignSelf = "center";
 wlcmSkipBtn.style.fontSize = "25px";
 wlcmSkipBtn.style.color = "#264653";
 
+body.append(fixedDiv);
 fixedDiv.append(wlcmP);
 fixedDiv.append(wlcmSkipBtn);
 
@@ -110,8 +107,13 @@ wlcmSkipBtn.addEventListener("click", (e) => {
   fixedDiv.remove();
 });
 
+//Using closures, firstC allows us to access the value of the first clicked div using if statement
+let firstC = 0;
+//counter allows us to count how many times the user attempted to reveal cards
+let fCounter = 0;
+let wCounter = 0;
 
-
+//Now we need to loop over the final shuffled array and display them in the #playArea grid that we created in html
 for (i = 0; i < shuffledDBFinal.length; i++) {
   const div = document.createElement("div");
 
@@ -125,15 +127,19 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   div.style.height = "150px";
   div.style.width = "120px";
   div.style.border = "2px solid #F4A261";
-  div.style.borderRadius = "10%";
+  div.style.borderRadius = "5%";
 
+  div.style.backgroundImage =
+    "url(https://lh5.googleusercontent.com/b1UiiS8bt6V-w1dFgMAKl2e3q3iik68nJXT-qicmbDxGLnC_1ZmegvdWwUqa_sotYSo=w2400)";
   div.style.backgroundColor = "#E76F51";
+  div.style.backgroundSize = "cover";
+  div.style.backgroundRepeat = "no-repeat";
   div.id = `child${i + 1}`;
   div.classList.add("divCard");
   img.classList.add("imgCard");
 
   img.style.display = "none";
-  img.style.borderRadius = "10%";
+  img.style.borderRadius = "5%";
   div.append(img);
   place.append(div);
   loseChild.style.textAlign = "center";
@@ -141,6 +147,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
   loseChild.append(failedCounter);
   winChild.append(winningCounter);
   div.addEventListener("click", (e) => {
+    //This is the first card that the user opens
     showCard(img);
     if (firstC === 0) {
       firstC = img.id;
@@ -148,7 +155,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
       div.style.pointerEvents = "none";
       setTimeout(() => {
         div.style.pointerEvents = "auto";
-      }, 2000);
+      }, 3000);
     } else {
       // This case is when 2 cards result is a match
       if (firstC === img.id) {
@@ -161,7 +168,7 @@ for (i = 0; i < shuffledDBFinal.length; i++) {
         // This case is when the cards don't match each other
         if (wCounter === 6) {
           const resultPage = document.createElement("div");
-          resultPage.style.borderRadius = "10%";
+          resultPage.style.borderRadius = "5%";
           resultPage.style.border = "solid #264653 3px";
           resultPage.style.width = "600px";
           resultPage.style.height = "650px";
